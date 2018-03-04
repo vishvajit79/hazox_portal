@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {NavController, Platform} from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  template:"<p>....loading</p>"
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(private iab: InAppBrowser,public platform: Platform) {
+    platform.ready().then(() => {
+      let browser = this.iab.create('https://support.hazox.com', '_blank', {zoom: 'yes', location: 'no'});
+      browser.show();
 
+
+    });
   }
-
 }
